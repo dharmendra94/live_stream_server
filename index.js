@@ -17,6 +17,9 @@ app.get("/", (req, res) => {
     res.send("Server is running");
 });
 
+/**
+ * TODO: Read more about sockets
+ */
 io.on('connection', (socket) => {
     socket.emit("me", socket.id);
 
@@ -29,7 +32,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on("answercall", (data) => {
-        io.to(data.to).em
+        io.to(data.to).emit("callaccepted", data.signal);
     })
 });
 
